@@ -98,13 +98,19 @@ nav {
 
 .nav-lang a {
   font-size: 12px;
-  color: var(--color-text);
+  color: var(--color-text) !important;
   text-decoration: none;
   padding: 4px 10px;
   border: 1px solid var(--color-border);
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   transition: all 0.2s;
+}
+
+.nav-lang a.active {
+  background-color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: #ffffff !important;
 }
 
 .nav-lang a:hover,
