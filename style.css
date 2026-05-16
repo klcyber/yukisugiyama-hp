@@ -136,76 +136,75 @@ nav {
 #hero {
   height: 100vh;
   min-height: 500px;
-  background:
-    url('assets/hero-bg.jpg') center/cover no-repeat,
-    linear-gradient(135deg, #2a1208 0%, #5c2d15 55%, #8b4a2f 100%);
+  background: linear-gradient(135deg, #2a1208 0%, #5c2d15 55%, #8b4a2f 100%);
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 0 60px;
   position: relative;
   overflow: hidden;
+  padding: var(--nav-height) 60px 0;
 }
 
 .hero-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 860px;
-  margin: 0 auto;
   width: 100%;
+  max-width: 860px;
   gap: 40px;
+  animation: fadeInUp 1s ease both;
 }
 
 .hero-content {
-  animation: fadeInUp 1s ease both;
+  flex: 1;
 }
 
 .hero-en-name {
   font-family: 'Noto Serif JP', serif;
   font-size: 72px;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff !important;
   line-height: 1.0;
   letter-spacing: -0.01em;
 }
 
 .hero-ja-name {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.6) !important;
   font-size: 17px;
   margin-top: 14px;
   letter-spacing: 0.15em;
 }
 
 .hero-pronoun {
-  color: var(--color-accent-light);
+  color: #e8d5c4 !important;
   font-size: 12px;
   letter-spacing: 0.2em;
   margin-top: 6px;
 }
 
 .hero-tagline {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.75) !important;
   font-size: 14px;
   margin-top: 28px;
   line-height: 1.6;
-  border-left: 2px solid var(--color-accent);
+  border-left: 2px solid #b5674a;
   padding-left: 14px;
   letter-spacing: 0.08em;
 }
 
+/* Decorative circle */
 .hero-deco {
   position: relative;
-  width: 260px;
-  height: 260px;
+  width: 240px;
+  height: 240px;
   flex-shrink: 0;
-  animation: fadeInUp 1.2s ease both;
 }
 
 .hero-circle {
-  width: 100%;
-  height: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   animation: rotateSlow 25s linear infinite;
 }
@@ -213,42 +212,42 @@ nav {
 .hero-circle::before {
   content: '';
   position: absolute;
-  top: 18px; left: 18px; right: 18px; bottom: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  inset: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 50%;
 }
 
 .hero-circle::after {
   content: '';
   position: absolute;
-  top: 8px; left: 50%;
-  width: 6px; height: 6px;
-  margin-left: -3px;
-  background: var(--color-accent);
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: #b5674a;
   border-radius: 50%;
 }
 
 .hero-kanji {
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Noto Serif JP', serif;
-  font-size: 80px;
+  font-size: 72px;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.12) !important;
   letter-spacing: 0.05em;
   pointer-events: none;
   user-select: none;
 }
 
-@keyframes rotateSlow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
+/* Scroll indicator */
 .hero-scroll {
   position: absolute;
-  bottom: 36px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -259,7 +258,7 @@ nav {
 
 .hero-scroll span {
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.45) !important;
   letter-spacing: 0.25em;
   text-transform: uppercase;
 }
@@ -271,22 +270,27 @@ nav {
   animation: scrollLine 2s ease-in-out infinite;
 }
 
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes scrollLine {
-  0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
-  49%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
-  50%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
-  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
 @media (max-width: 640px) {
-  #hero { padding: 0 28px; }
+  #hero { padding: var(--nav-height) 28px 0; }
   .hero-deco { display: none; }
-  .hero-en-name { font-size: 52px; }
+  .hero-en-name { font-size: 52px !important; }
   .hero-inner { justify-content: flex-start; }
 }
 
