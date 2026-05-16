@@ -177,6 +177,13 @@ h3.sub-title:first-of-type {
   margin-bottom: 28px;
 }
 
+.profile-pronouns {
+  font-size: 14px;
+  color: #888;
+  margin-top: -20px;
+  margin-bottom: 24px;
+}
+
 .profile-label {
   font-size: 15px;
   font-weight: 700;
