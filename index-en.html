@@ -37,7 +37,7 @@
     </section>
 
     <!-- PROFILE -->
-    <section id="profile" class="section">
+    <section id="profile" class="section reveal">
       <div class="section-inner">
         <h2 class="section-title">Profile</h2>
 
@@ -72,7 +72,7 @@
     </section>
 
     <!-- RESEARCH ACHIEVEMENTS -->
-    <section id="research" class="section">
+    <section id="research" class="section reveal">
       <div class="section-inner">
         <h2 class="section-title">Research Achievements</h2>
 
@@ -172,7 +172,7 @@
     </section>
 
     <!-- GAMES -->
-    <section id="games" class="section section--gray">
+    <section id="games" class="section section--tinted reveal">
       <div class="section-inner">
         <h2 class="section-title">Games</h2>
         <div class="games-grid">
@@ -191,7 +191,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="section section--gray">
+    <section id="contact" class="section section--tinted reveal">
       <div class="section-inner">
         <h2 class="section-title">Contact</h2>
         <p class="contact-desc">
@@ -275,6 +275,12 @@
     qrModal.addEventListener('click', (e) => {
       if (e.target === qrModal) qrModal.classList.remove('open');
     });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 
 </body>
