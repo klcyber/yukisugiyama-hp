@@ -142,7 +142,7 @@ nav {
 #hero {
   height: 100vh;
   min-height: 500px;
-  background: linear-gradient(135deg, #1a0e08 0%, #3d2010 55%, #5c3018 100%);
+  background: linear-gradient(135deg, #1a1510 0%, #3d3025 55%, #6b5038 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
