@@ -142,7 +142,9 @@ nav {
 #hero {
   height: 100vh;
   min-height: 500px;
-  background: linear-gradient(135deg, #2a1208 0%, #5c2d15 55%, #8b4a2f 100%);
+  background: linear-gradient(-45deg, #3d1e10, #7a4535, #a07060, #5c3020, #8a5040, #4a2418);
+  background-size: 400% 400%;
+  animation: gradientShift 16s ease infinite;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -276,6 +278,12 @@ nav {
   animation: scrollLine 2s ease-in-out infinite;
 }
 
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 @keyframes rotateSlow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -298,22 +306,6 @@ nav {
   .hero-deco { display: none; }
   .hero-en-name { font-size: 52px !important; }
   .hero-inner { justify-content: flex-start; }
-}
-
-/* ==================== HERO CANVAS ==================== */
-#hero-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-inner,
-.hero-scroll {
-  position: relative;
-  z-index: 1;
 }
 
 /* ==================== SCROLL ANIMATION ==================== */
