@@ -657,10 +657,20 @@ footer {
 }
 
 .profile-links {
-  margin-top: 20px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
+}
+
+.profile-links-label {
+  font-size: 12px;
+  color: var(--color-text);
+  opacity: 0.5;
+  margin: 0;
 }
 
 .profile-link-btn {
