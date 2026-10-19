@@ -212,26 +212,26 @@
       <div class="section-inner">
         <h2 class="section-title">Games</h2>
         <div class="games-grid">
-          <a href="https://card-games-for-english-leaners.onrender.com" target="_blank" rel="noopener" class="game-card">
+          <div class="game-card" data-url="https://card-games-for-english-leaners.onrender.com">
             <p class="game-card-title">Vocab Card Game</p>
             <p class="game-card-desc">Master English vocabulary through card games. Play Concentration or Old Maid with TOEIC, TOEFL, and custom word sets. Multiplayer and CPU modes available.</p>
             <p class="game-card-link">Play now →</p>
-          </a>
-          <a href="https://who-am-i-game.elmon.workers.dev/" target="_blank" rel="noopener" class="game-card">
+          </div>
+          <div class="game-card" data-url="https://who-am-i-game.elmon.workers.dev/">
             <p class="game-card-title">Who Am I?</p>
             <p class="game-card-desc">Hold a card to your forehead and guess what it says from your friends' hints. Features animals, food, people, and many more categories. Great for English learners.</p>
             <p class="game-card-link">Play now →</p>
-          </a>
+          </div>
           <a href="https://www.youtube.com/@English_activity_box" target="_blank" rel="noopener" class="game-card">
             <p class="game-card-title">Listen and Draw</p>
             <p class="game-card-desc">Draw along to English instructions and develop your listening skills in a fun and creative way. Watch the activity videos on YouTube.</p>
             <p class="game-card-link">Visit channel →</p>
           </a>
-          <a href="https://app-umber-psi-60.vercel.app" target="_blank" rel="noopener" class="game-card">
+          <div class="game-card" data-url="https://app-umber-psi-60.vercel.app">
             <p class="game-card-title">Listening Dictation</p>
             <p class="game-card-desc">Listen to English songs and fill in the blanks. A fun way to sharpen your listening and dictation skills.</p>
             <p class="game-card-link">Try it →</p>
-          </a>
+          </div>
         </div>
       </div>
     </section>
@@ -269,6 +269,19 @@
     </svg>
     QR
   </button>
+
+  <!-- Password Modal -->
+  <div class="pw-modal" id="pwModal">
+    <div class="pw-modal-box">
+      <p class="pw-modal-title">Enter password</p>
+      <input type="password" class="pw-modal-input" id="pwInput" placeholder="password">
+      <p class="pw-modal-error" id="pwError">Incorrect password</p>
+      <div class="pw-modal-btns">
+        <button class="pw-modal-cancel" id="pwCancel">Cancel</button>
+        <button class="pw-modal-submit" id="pwSubmit">Open</button>
+      </div>
+    </div>
+  </div>
 
   <!-- QR Modal -->
   <div class="qr-modal" id="qrModal">
@@ -357,6 +370,40 @@
     qrModal.addEventListener('click', (e) => {
       if (e.target === qrModal) qrModal.classList.remove('open');
     });
+
+    // Password modal
+    const pwModal = document.getElementById('pwModal');
+    const pwInput = document.getElementById('pwInput');
+    const pwError = document.getElementById('pwError');
+    const pwSubmit = document.getElementById('pwSubmit');
+    const pwCancel = document.getElementById('pwCancel');
+    let pendingUrl = '';
+
+    document.querySelectorAll('.game-card[data-url]').forEach(card => {
+      card.addEventListener('click', () => {
+        pendingUrl = card.dataset.url;
+        pwInput.value = '';
+        pwError.style.display = 'none';
+        pwModal.classList.add('open');
+        pwInput.focus();
+      });
+    });
+
+    function submitPassword() {
+      if (pwInput.value === 'yukisugiyamapass') {
+        pwModal.classList.remove('open');
+        window.open(pendingUrl, '_blank', 'noopener');
+      } else {
+        pwError.style.display = 'block';
+        pwInput.value = '';
+        pwInput.focus();
+      }
+    }
+
+    pwSubmit.addEventListener('click', submitPassword);
+    pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitPassword(); });
+    pwCancel.addEventListener('click', () => pwModal.classList.remove('open'));
+    pwModal.addEventListener('click', e => { if (e.target === pwModal) pwModal.classList.remove('open'); });
 
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
