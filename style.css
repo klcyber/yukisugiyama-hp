@@ -836,29 +836,27 @@ footer {
 .profile-link-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  background: var(--color-accent);
+  gap: 8px;
+  padding: 7px 16px 7px 12px;
+  background: #fff;
+  border: 1px solid var(--color-border);
   border-radius: 99px;
-  color: #fff;
-  font-size: 12px;
+  color: var(--color-heading);
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-decoration: none;
-  opacity: 0.9;
-  transition: opacity 0.2s, transform 0.15s;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
 }
 
 .profile-link-btn:hover {
-  opacity: 1;
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(61, 43, 31, 0.10);
   transform: translateY(-1px);
 }
 
-.profile-link-btn::before {
-  content: '';
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.6);
+.profile-link-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
