@@ -211,26 +211,26 @@
       <div class="section-inner">
         <h2 class="section-title">ゲーム</h2>
         <div class="games-grid">
-          <a href="https://card-games-for-english-leaners.onrender.com" target="_blank" rel="noopener" class="game-card">
+          <div class="game-card" data-url="https://card-games-for-english-leaners.onrender.com">
             <p class="game-card-title">Vocab Card Game</p>
             <p class="game-card-desc">カードゲームで英語語彙を楽しく習得。神経衰弱・ババ抜き形式で、TOEIC・TOEFLなど複数カテゴリーに対応。マルチプレイヤーやCPU対戦も可能。</p>
             <p class="game-card-link">プレイする →</p>
-          </a>
-          <a href="https://who-am-i-game.elmon.workers.dev/" target="_blank" rel="noopener" class="game-card">
+          </div>
+          <div class="game-card" data-url="https://who-am-i-game.elmon.workers.dev/">
             <p class="game-card-title">Who Am I?</p>
             <p class="game-card-desc">カードを額に当てて、仲間のヒントで何のカードか当てる推測ゲーム。動物・食べ物・人物など多彩なカテゴリーから出題。英語学習にも最適。</p>
             <p class="game-card-link">プレイする →</p>
-          </a>
-          <a href="https://www.youtube.com/@English_activity_box" target="_blank" rel="noopener" class="game-card">
+          </div>
+          <div class="game-card" data-url="https://www.youtube.com/@English_activity_box">
             <p class="game-card-title">Listen and Draw</p>
             <p class="game-card-desc">英語の指示を聞きながら絵を描くアクティビティ。リスニング力と表現力を楽しく養える。YouTubeチャンネルで動画を公開中。</p>
             <p class="game-card-link">チャンネルを見る →</p>
-          </a>
-          <a href="https://app-umber-psi-60.vercel.app" target="_blank" rel="noopener" class="game-card">
+          </div>
+          <div class="game-card" data-url="https://app-umber-psi-60.vercel.app">
             <p class="game-card-title">Listening Dictation</p>
             <p class="game-card-desc">英語の歌を聴きながら空欄を埋めるリスニング活動。楽しく聞き取り力を鍛えられる。</p>
             <p class="game-card-link">挑戦する →</p>
-          </a>
+          </div>
         </div>
       </div>
     </section>
@@ -269,6 +269,19 @@
     QR
   </button>
 
+  <!-- Password Modal -->
+  <div class="pw-modal" id="pwModal">
+    <div class="pw-modal-box">
+      <p class="pw-modal-title">パスワードを入力してください</p>
+      <input type="password" class="pw-modal-input" id="pwInput" placeholder="password">
+      <p class="pw-modal-error" id="pwError">パスワードが違います</p>
+      <div class="pw-modal-btns">
+        <button class="pw-modal-cancel" id="pwCancel">キャンセル</button>
+        <button class="pw-modal-submit" id="pwSubmit">開く</button>
+      </div>
+    </div>
+  </div>
+
   <!-- QR Modal -->
   <div class="qr-modal" id="qrModal">
     <div class="qr-modal-box">
@@ -292,6 +305,40 @@
         navMain.classList.remove('open');
       });
     });
+
+    // Password modal
+    const pwModal = document.getElementById('pwModal');
+    const pwInput = document.getElementById('pwInput');
+    const pwError = document.getElementById('pwError');
+    const pwSubmit = document.getElementById('pwSubmit');
+    const pwCancel = document.getElementById('pwCancel');
+    let pendingUrl = '';
+
+    document.querySelectorAll('.game-card').forEach(card => {
+      card.addEventListener('click', () => {
+        pendingUrl = card.dataset.url;
+        pwInput.value = '';
+        pwError.style.display = 'none';
+        pwModal.classList.add('open');
+        pwInput.focus();
+      });
+    });
+
+    function submitPassword() {
+      if (pwInput.value === 'yukisugiyamapass') {
+        pwModal.classList.remove('open');
+        window.open(pendingUrl, '_blank', 'noopener');
+      } else {
+        pwError.style.display = 'block';
+        pwInput.value = '';
+        pwInput.focus();
+      }
+    }
+
+    pwSubmit.addEventListener('click', submitPassword);
+    pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitPassword(); });
+    pwCancel.addEventListener('click', () => pwModal.classList.remove('open'));
+    pwModal.addEventListener('click', e => { if (e.target === pwModal) pwModal.classList.remove('open'); });
 
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
