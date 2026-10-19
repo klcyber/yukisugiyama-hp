@@ -441,6 +441,79 @@ h3.sub-title:first-of-type {
   opacity: 0.7;
 }
 
+.paper-linked {
+  position: relative;
+  margin: 0 -14px 10px;
+  padding: 12px 56px 12px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.paper-linked::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--color-accent);
+  transform: scaleY(0);
+  transition: transform 0.25s;
+}
+
+.paper-linked:hover,
+.paper-linked:focus-within {
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(61, 43, 31, 0.10);
+  transform: translateY(-2px);
+}
+
+.paper-linked:hover::before,
+.paper-linked:focus-within::before {
+  transform: scaleY(1);
+}
+
+.research-item a.paper-link {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  border: 1.5px solid var(--color-accent-light);
+  border-radius: 50%;
+  color: var(--color-accent);
+  text-decoration: none;
+  opacity: 1;
+  transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.paper-link svg {
+  transition: transform 0.25s;
+}
+
+.paper-linked:hover a.paper-link,
+.paper-linked a.paper-link:focus-visible {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+  opacity: 1;
+}
+
+.paper-linked:hover .paper-link svg {
+  transform: translate(2px, -2px);
+}
+
+.paper-linked a.paper-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .research-note {
   font-size: 14px;
   color: #7a5a4a;
